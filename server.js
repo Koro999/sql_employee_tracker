@@ -12,8 +12,8 @@ const choices = [
     'Add a department', 
     'Add a role', 
     'Add an employee',
-    'Update an employee role']
-
+    'Update an employee role'
+]
 //array holding question for inquirer
 const question = [
     {
@@ -26,6 +26,7 @@ const question = [
 
 //init function
 function init () {
+    //break for formatting purposes
     console.log(`\b`)
     //start inquirer for user to select a field
     inquirer.prompt(question).then((response) => {
@@ -38,15 +39,36 @@ function init () {
                 viewDepartments.viewAll();
                 break;
             }
+            //if view all roles is selected 
             case'View all roles': {
                 const viewRoles = new queries.ViewRoles()
                 viewRoles.viewAll();
                 break;
             }
+            //if view all employees is selected 
             case'View all employees': {
                 const viewEmployees = new queries.ViewEmployees()
                 viewEmployees.viewAll();
                 break;
+            }
+            //if add a department is selected
+            case'Add a department': {
+                const addDepartment = new queries.AddDepartment()
+                addDepartment.add();
+                break;
+            }
+            //if add a role is selected 
+            case'Add a role': {
+
+            }
+            //if add an employee is selected
+            case'Add an employee':{            
+                const addEmployee = new queries.AddEmployee()
+                addEmployee.add();
+                break;
+            }
+            case'Update an employee role':{
+
             }
             default: {
                 console.log('switch working.')
@@ -57,21 +79,7 @@ function init () {
 //call init
 init();
 
+//this export is required to call init inside the queries function to avoid overlapping issues in the console
+//issue is happening because the table and inquirer function were being executed side by side
+//by calling init() to loop inside the actual function, after the function accessing the db. This is avoided. 
 exports.init = init;
-
-            /*
-            
-
-            break; 
-            case'Add a department': 
-
-            break; 
-            case'Add a role':
-
-            break; 
-            case'Add an employee':
-
-            break; 
-            case'Update an employee role':
-
-            break; */

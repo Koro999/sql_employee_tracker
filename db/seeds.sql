@@ -5,25 +5,18 @@ VALUES (001, "Sales"),
        (004, "Quality Assurance"),
        (005, "Research & Development");
        
-INSERT INTO roles (id, department_id , title, salary)
-VALUES (001, 001, 'Salesman', 33000),
-       (002, 002, 'HR', 34000),
-       (003, 003, 'Marketing', 36000),
-       (004, 004, 'QA', 39000),
-       (005, 005, 'R&D', 42000);
+INSERT INTO roles (id, department_id, title, salary)
+VALUES (001, 001, "Sales Team", 56000),
+       (002, 002, "HR Representative", 54000),
+       (003, 003, "Marketing Team", 58000),
+       (004, 004, "Quality Assurance Tester", 57000),
+       (005, 005, "Researcher", 60000);
        
-INSERT INTO employees (id,manager_id,first_name,last_name,role_id)
-VALUES (001, 002, "Chris", "Dang", 001),
-       (002, NULL, "Jorkwin", "Rodriquez", 001),
-       (003, NULL, "Andy", "Dang", 001),
-       (004, 001, "Yoshi","P", 002),
-       (005, NULL, "Kinnison", "Krow", 002),
-       (006, NULL, "James", "Harden", 002),
-       (007, NULL, "Ashura", "DSR", 002),
-       (008, NULL, "Cloud", "Strife", 002),
-       (009, 003, "Jote","Bestgirl", 003),
-       (011, NULL, "Ex", "Plosion", 003),
-       (012, 004, "Greased", "Lightning", 004),
-       (013, NULL, "Tornado", "Kick", 004),
-       (014, 005, "Brother", "Hood", 005),
-       (015, NULL, "Elden", "Ring", 005);
+INSERT INTO employees (id,first_name,last_name,role_id,manager_id)
+VALUES (001, "Chris", "Dang", 001, NULL),
+       (002, "Jorkwin", "Rodriquez", 001, 001),
+       (003, "Andy", "Dang", 001, 001),
+       (004, "Kinnison", "Krow", 002, NULL),
+       (005, "Ashura", "DSR", 003, NULL),
+       (006, "Joshua", "Rosfield", 004, NULL),
+       (007, "Jote", "Rosfield", 005, NULL);
