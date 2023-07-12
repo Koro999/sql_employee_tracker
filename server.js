@@ -1,29 +1,77 @@
-// Import express and mysql2
-const express = require('express');
-const mysql = require('mysql2');
+//import inquirer library
+//needed to downgrade to use require
+const inquirer = require('inquirer')
+//import queries.js for use here 
+const queries = require('./queries')
 
-//assign PORT for host, and local fixed PORT
-const PORT = process.env.PORT || 3001;
-//call instance of express 
-const app = express();
+//array holding choices for inquirer
+const choices = [
+    'View all departments', 
+    'View all roles', 
+    'View all employees', 
+    'Add a department', 
+    'Add a role', 
+    'Add an employee',
+    'Update an employee role']
 
-// Express middleware, to parse information
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+//array holding question for inquirer
+const question = [
+    {
+        type: 'list',
+        message: 'What would you like to do?',
+        choices: choices,
+        name: 'option'
+    }
+]
 
-// Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    //access the .env file to insert credentials
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-  },
-  console.log(`Connected to ${process.env.DB_NAME} database.`)
-);
+//init function
+function init () {
+    console.log(`\b`)
+    //start inquirer for user to select a field
+    inquirer.prompt(question).then((response) => {
+        //switch statement to check response and execute specific code 
+        switch(response.option){
+            //if view all departments is selected 
+            case 'View all departments': {
+                //create instance of queries.js and call specified function
+                const viewDepartments = new queries.ViewDepartments()
+                viewDepartments.viewAll();
+                break;
+            }
+            case'View all roles': {
+                const viewRoles = new queries.ViewRoles()
+                viewRoles.viewAll();
+                break;
+            }
+            case'View all employees': {
+                const viewEmployees = new queries.ViewEmployees()
+                viewEmployees.viewAll();
+                break;
+            }
+            default: {
+                console.log('switch working.')
+            }
+        }
+    })
+}
+//call init
+init();
 
-//show which port were on
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/`);
-});
+exports.init = init;
+
+            /*
+            
+
+            break; 
+            case'Add a department': 
+
+            break; 
+            case'Add a role':
+
+            break; 
+            case'Add an employee':
+
+            break; 
+            case'Update an employee role':
+
+            break; */
