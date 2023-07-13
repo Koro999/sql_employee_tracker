@@ -204,7 +204,6 @@ class AddRole extends ViewAll {
         //variables storing response information
         
         let newRole = [response.role, response.salary, response.department];
-        console.log (newRole)
         
         //query syntax for mysql2
         const sql = `INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`;
