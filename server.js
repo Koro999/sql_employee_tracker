@@ -59,7 +59,9 @@ function init () {
             }
             //if add a role is selected 
             case'Add a role': {
-
+                const addRole = new queries.AddRole()
+                addRole.add();
+                break;
             }
             //if add an employee is selected
             case'Add an employee':{            
@@ -67,8 +69,11 @@ function init () {
                 addEmployee.add();
                 break;
             }
+            //if update an employee role is selected
             case'Update an employee role':{
-
+                const UpdateEmployeeRole = new queries.UpdateRole()
+                UpdateEmployeeRole.update();
+                break;
             }
             default: {
                 console.log('switch working.')
